@@ -763,6 +763,7 @@
         grid-row: 2 !important;
         font-size: 0.88rem !important;
       }
+
     }
 
     /* AJUSTE PARA TELAS MUITO PEQUENAS (EX: iPhone SE / 320px-360px) */
@@ -804,6 +805,14 @@
     .bento-grid .reveal-card:nth-child(3),
     .plans-grid .reveal-card:nth-child(3) {
       transition-delay: 0.24s;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      #webgl-canvas {
+        transform: scale(0.5) translateY(-30px);
+        /* Reduz para 70% do tamanho original */
+        transform-origin: center center;
+      }
     }
   </style>
 </head>
