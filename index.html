@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="favicon.png">
-  <title>Leonardo Crecchi | Consultoria & High-Performance Biomecânica</title>
+  <title>Leonardo Crecchi | Consultoria & Acompanhamento Individualizado</title>
   <meta name="description"
-    content="Acompanhamento individual de alta precisão, análise biomecânica em vídeo e controle de carga contínuo.">
+    content="Planejamento de treino com base científica adaptado à sua rotina e limitações. Acompanhamento direto via WhatsApp, ajustes periódicos e relatórios quinzenais.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@500;600;700;800;900&display=swap"
     rel="stylesheet">
 
   <style>
@@ -27,7 +27,7 @@
       --accent-dim: rgba(0, 163, 255, 0.08);
       --txt: #F8FAFC;
       --txt-muted: #A8B3C5;
-      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-main: 'Outfit', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       --header-h: 76px;
     }
@@ -50,7 +50,25 @@
       color: var(--txt-muted);
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .scroll-hint {
+        animation: none !important;
+      }
+      .reveal-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
     }
 
     .wrap {
@@ -81,7 +99,7 @@
     }
 
     .brand {
-      font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+      font-size: clamp(0.95rem, 2.2vw, 1.15rem);
       font-weight: 800;
       color: var(--txt);
       letter-spacing: -0.02em;
@@ -168,15 +186,15 @@
       height: 6px;
       background: var(--accent);
       border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent);
     }
 
     .bg-text {
       font-size: clamp(3rem, 10vw, 11rem);
       font-weight: 900;
       text-transform: uppercase;
-      color: rgba(0, 163, 255, 0.35);
-      text-shadow: 0 0 50px rgba(0, 163, 255, 0.4);
+      color: rgba(0, 163, 255, 0.42);
+      text-shadow: 0 0 45px rgba(0, 163, 255, 0.55),
+                   0 0 90px rgba(0, 163, 255, 0.28);
       letter-spacing: 6px;
       line-height: 0.95;
       margin-bottom: 16px;
@@ -185,10 +203,9 @@
 
     .hero-sub {
       font-family: var(--font-mono);
-      font-size: clamp(0.75rem, 2vw, 1.1rem);
+      font-size: clamp(0.75rem, 2vw, 1.05rem);
       color: var(--accent);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
+      letter-spacing: 0.02em;
       font-weight: 700;
       margin-bottom: 12px;
     }
@@ -279,15 +296,9 @@
       left: 0;
       width: 100%;
       height: calc(100% + 50vh);
-      background-image:
-        radial-gradient(circle at 50% 0%, rgba(0, 163, 255, 0.04) 0%, transparent 60%),
-        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-      background-size: 100% 100%, 40px 40px, 40px 40px;
+      background: radial-gradient(circle at 50% 15%, rgba(0, 163, 255, 0.05) 0%, transparent 60%);
       pointer-events: none;
       z-index: 0;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50vh, black 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 50vh, black 100%);
     }
 
     section {
@@ -354,14 +365,14 @@
       transition: all 0.2s ease;
       cursor: pointer;
       border: none;
-      box-shadow: 0 0 25px var(--accent-glow);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
       text-decoration: none;
       white-space: nowrap;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 35px rgba(0, 163, 255, 0.45);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
       background: #33B5FF;
     }
 
@@ -378,215 +389,254 @@
       background: var(--accent-dim);
     }
 
-    /* CARDS GERAIS */
-    .results-grid,
-    .bento-grid,
-    .plans-grid {
+    /* GRID DE PILARES (COMO FUNCIONA) - LAYOUT HARMÔNICO 6-COL */
+    .pillars-grid {
       display: grid;
-      gap: 24px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 22px;
     }
 
-    .results-grid {
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    }
-
-    .bento-grid,
-    .plans-grid {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-
-    .result-card,
-    .bento-card,
-    .plan-card {
+    .pillar-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
+      border-radius: 16px;
+      padding: 30px 26px;
       backdrop-filter: blur(12px);
       transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
 
-    .result-card:hover {
+    .pillar-card:hover {
       border-color: var(--border-hover);
       transform: translateY(-3px);
+      background: rgba(19, 22, 34, 0.95);
     }
 
-    .bento-card {
-      padding: 32px;
+    /* Linha 1: 3 cards perfeitos (cada um ocupa 2 colunas: 2+2+2 = 6) */
+    .pillar-card:nth-child(1),
+    .pillar-card:nth-child(2),
+    .pillar-card:nth-child(3) {
+      grid-column: span 2;
     }
 
-    .bento-card:hover {
-      border-color: rgba(255, 255, 255, 0.22);
+    /* Linha 2: 2 cards perfeitos (cada um ocupa 3 colunas: 3+3 = 6) */
+    .pillar-card:nth-child(4),
+    .pillar-card:nth-child(5) {
+      grid-column: span 3;
     }
 
-    .plan-card {
-      padding: 38px 30px;
+    .pillar-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(0, 163, 255, 0.25);
+      border-radius: 10px;
+      display: grid;
+      place-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .pillar-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      background: rgba(0, 163, 255, 0.06);
+      border: 1px solid rgba(0, 163, 255, 0.18);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .pillar-content h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--txt);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .pillar-content p {
+      font-size: 0.94rem;
+      color: var(--txt-muted);
+      line-height: 1.6;
+    }
+
+    .method-guarantee {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(0, 163, 255, 0.08) 0%, rgba(19, 22, 34, 0.8) 100%);
+      border: 1px solid rgba(0, 163, 255, 0.3);
+      border-radius: 16px;
+      padding: 24px 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .guarantee-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(0, 163, 255, 0.12);
+      border: 1px solid rgba(0, 163, 255, 0.35);
+      border-radius: 14px;
+      display: grid;
+      place-content: center;
+      flex-shrink: 0;
+    }
+
+    .method-guarantee p {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--txt);
+      line-height: 1.5;
+    }
+
+    /* PASSOS DE ADESÃO */
+    .steps-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
     }
 
-    .plan-card.featured {
-      border-color: var(--accent);
-      background: linear-gradient(180deg, rgba(0, 163, 255, 0.08) 0%, var(--surface) 100%);
-      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+    .step-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
     }
 
-    /* ELEMENTOS DOS CARDS */
-    .photo-comparison {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .photo-box {
-      position: relative;
-      aspect-ratio: 4/5;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #151824;
-      border: 1px solid var(--border);
-    }
-
-    .photo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .photo-tag {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
+    .step-num {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(0, 0, 0, 0.8);
-      color: #FFF;
-      backdrop-filter: blur(4px);
-    }
-
-    .photo-tag.accent {
-      background: var(--accent);
-      color: #020814;
-    }
-
-    .result-user-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 14px;
-    }
-
-    .result-user-info h4 {
-      font-size: 1.05rem;
-    }
-
-    .result-user-info span {
-      font-size: 0.85rem;
-      color: var(--txt-muted);
-    }
-
-    .result-metrics-row {
-      display: flex;
-      gap: 12px;
-      background: var(--surface-solid);
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      margin-bottom: 14px;
-    }
-
-    .m-badge {
-      flex: 1;
-    }
-
-    .m-badge b {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 1.1rem;
       color: var(--accent);
-      font-weight: 700;
-    }
-
-    .m-badge span {
-      font-size: 0.72rem;
-      color: var(--txt-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .quote-text {
-      font-size: 0.9rem;
-      color: #E2E8F0;
-      font-style: italic;
-      line-height: 1.45;
-    }
-
-    .bento-icon {
-      width: 48px;
-      height: 48px;
       background: var(--accent-dim);
       border: 1px solid rgba(0, 163, 255, 0.25);
-      border-radius: 12px;
-      display: grid;
-      place-content: center;
-      color: var(--accent);
-      margin-bottom: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
 
-    .plan-badge {
-      position: absolute;
-      top: -13px;
-      left: 30px;
+    .step-card h3 {
+      font-size: 1.1rem;
+      color: var(--txt);
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 0.92rem;
+      color: var(--txt-muted);
+      line-height: 1.55;
+    }
+
+    /* SEÇÃO DE CONVERSÃO / WHATSAPP CTA DIRETO */
+    .cta-card {
+      max-width: 820px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(0, 163, 255, 0.08) 0%, rgba(19, 22, 34, 0.88) 100%);
+      border: 1px solid rgba(0, 163, 255, 0.35);
+      border-radius: 20px;
+      padding: 56px 44px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-card h2 {
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      color: var(--txt);
+      margin: 18px auto 16px;
+      line-height: 1.2;
+      max-width: 680px;
+    }
+
+    .cta-card p {
+      font-size: 1.05rem;
+      color: var(--txt-muted);
+      line-height: 1.65;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+
+    .cta-action-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .btn-whatsapp-lg {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       background: var(--accent);
       color: #020814;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
       font-weight: 700;
-      padding: 4px 14px;
-      border-radius: 99px;
-      text-transform: uppercase;
+      padding: 18px 40px;
+      border-radius: 12px;
+      font-size: 1.08rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 6px 20px rgba(0, 163, 255, 0.35);
+      text-decoration: none;
+      white-space: nowrap;
     }
 
-    .price-val {
-      font-family: var(--font-main);
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--txt);
-      margin: 18px 0 24px;
+    .btn-whatsapp-lg:hover {
+      background: #33B5FF;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 163, 255, 0.5);
     }
 
-    .price-val small {
-      font-size: 0.88rem;
-      color: var(--txt-muted);
-      font-weight: 400;
+    .btn-whatsapp-lg svg {
+      flex-shrink: 0;
     }
 
-    .plan-features {
-      margin-bottom: 32px;
-      flex: 1;
-      list-style: none;
+    .cta-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
     }
 
-    .plan-features li {
+    .cta-feature-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-      font-size: 0.93rem;
-      color: #E2E8F0;
+      gap: 9px;
+      font-size: 0.9rem;
+      color: var(--txt);
+      font-weight: 500;
     }
 
-    .plan-features svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: var(--accent);
-      stroke-width: 2.5;
+    .cta-feature-item svg {
       flex-shrink: 0;
     }
 
@@ -626,15 +676,24 @@
     }
 
     .faq-body {
-      max-height: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-body-inner {
       overflow: hidden;
-      transition: max-height 0.3s ease;
+    }
+
+    .faq-btn[aria-expanded="true"] + .faq-body {
+      grid-template-rows: 1fr;
     }
 
     .faq-body p {
       padding-bottom: 22px;
       color: var(--txt-muted);
       font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     /* FOOTER */
@@ -660,7 +719,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 10px 30px rgba(0, 163, 255, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
       text-decoration: none;
       transition: transform 0.2s;
     }
@@ -719,11 +778,12 @@
         font-size: 2.8rem;
         letter-spacing: 2px;
         margin-bottom: 12px;
+        text-shadow: 0 0 35px rgba(0, 163, 255, 0.5);
       }
 
       .hero-sub {
-        font-size: 0.72rem;
-        letter-spacing: 0.18em;
+        font-size: 0.82rem;
+        letter-spacing: 0.02em;
       }
 
       .hero-p {
@@ -736,34 +796,45 @@
         bottom: 80px;
       }
 
-      .bento-card {
-        display: grid !important;
-        grid-template-columns: 48px 1fr !important;
-        row-gap: 12px !important;
-        column-gap: 14px !important;
+      .pillars-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+
+      .pillar-card {
+        padding: 24px 20px !important;
+      }
+
+      .pillar-card:nth-child(1),
+      .pillar-card:nth-child(2),
+      .pillar-card:nth-child(3),
+      .pillar-card:nth-child(4),
+      .pillar-card:nth-child(5) {
+        grid-column: auto !important;
+      }
+
+      .method-guarantee {
+        flex-direction: column !important;
+        text-align: center !important;
         padding: 20px 18px !important;
+        gap: 12px !important;
       }
 
-      .bento-icon {
-        grid-column: 1 !important;
-        grid-row: 1 !important;
-        margin-bottom: 0 !important;
+      .cta-card {
+        padding: 36px 20px !important;
       }
 
-      .bento-card h3 {
-        grid-column: 2 !important;
-        grid-row: 1 !important;
-        align-self: center !important;
-        font-size: 1.05rem !important;
-        margin: 0 !important;
+      .btn-whatsapp-lg {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 0.98rem;
       }
 
-      .bento-card p {
-        grid-column: 1 / -1 !important;
-        grid-row: 2 !important;
-        font-size: 0.88rem !important;
+      .cta-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
       }
-
     }
 
     /* AJUSTE PARA TELAS MUITO PEQUENAS (EX: iPhone SE / 320px-360px) */
@@ -778,8 +849,11 @@
       }
 
       nav .btn-header {
-        padding: 6px 10px !important;
-        font-size: 0.72rem !important;
+        padding: 8px 12px !important;
+        font-size: 0.78rem !important;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
       }
     }
 
@@ -795,16 +869,23 @@
       transform: translateY(0);
     }
 
-    .results-grid .reveal-card:nth-child(2),
-    .bento-grid .reveal-card:nth-child(2),
-    .plans-grid .reveal-card:nth-child(2) {
-      transition-delay: 0.12s;
+    .pillars-grid .reveal-card:nth-child(2),
+    .steps-grid .reveal-card:nth-child(2) {
+      transition-delay: 0.08s;
     }
 
-    .results-grid .reveal-card:nth-child(3),
-    .bento-grid .reveal-card:nth-child(3),
-    .plans-grid .reveal-card:nth-child(3) {
+    .pillars-grid .reveal-card:nth-child(3),
+    .steps-grid .reveal-card:nth-child(3) {
+      transition-delay: 0.16s;
+    }
+
+    .pillars-grid .reveal-card:nth-child(4),
+    .steps-grid .reveal-card:nth-child(4) {
       transition-delay: 0.24s;
+    }
+
+    .pillars-grid .reveal-card:nth-child(5) {
+      transition-delay: 0.32s;
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
@@ -823,29 +904,28 @@
     <div class="wrap">
       <a href="#" class="brand">LEONARDO <span>CRECCHI</span></a>
       <nav>
-        <a href="#resultados">Resultados</a>
-        <a href="#metodo">Metodologia</a>
-        <a href="#planos">Planos</a>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#adesao">Adesão</a>
+        <a href="#contato">Começar</a>
         <a href="#faq">FAQ</a>
         <a class="btn outline btn-header"
-          href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20J%C3%A1%20sou%20seu%20aluno%20e%20preciso%20de%20um%20suporte%20no%20meu%20treino."
-          target="_blank">Área do Aluno</a>
+          href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20Quero%20iniciar%20minha%20consultoria%20e%20verificar%20a%20disponibilidade%20de%20vagas."
+          target="_blank">Falar no WhatsApp</a>
       </nav>
     </div>
   </header>
 
   <div id="intro-container">
     <div class="hero-content">
-      <div class="hero-badge"><span class="badge-dot"></span> Consultoria Online</div>
-      <div class="bg-text">LEONARDO<br>CRECCHI</div>
-      <div class="hero-sub">Biomecânica & High-Performance</div>
-      <div class="hero-p">Engenharia do movimento e controle rigoroso de carga aplicados aos seus resultados.</div>
+      <h1 class="bg-text">LEONARDO<br>CRECCHI</h1>
+      <div class="hero-sub">Consultoria & Treinos com Base Científica</div>
+      <div class="hero-p">Planejamento biomecânico individualizado, seguro e eficiente para você evoluir com consistência.</div>
     </div>
 
     <canvas id="webgl-canvas"></canvas>
 
-    <a href="#resultados" class="scroll-hint">
-      <span>Role para explorar</span>
+    <a href="#como-funciona" class="scroll-hint">
+      <span>Role para ver como funciona</span>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="2.5"
         stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 5v14M19 12l-7 7-7-7" />
@@ -857,242 +937,271 @@
 
     <div class="grid-overlay"></div>
 
-    <section id="resultados">
+    <!-- SEÇÃO COMO FUNCIONA -->
+    <section id="como-funciona">
       <div class="wrap">
         <div class="section-head">
-          <span class="badge"><span class="badge-dot"></span> Evolução de Alunos</span>
-          <h2>Transformações com Ajuste Biomecânico</h2>
-          <p>Acompanhamento focado na correção técnica de movimento e progressão contínua de cargas.</p>
-        </div>
-
-        <div class="results-grid">
-          <div class="result-card reveal-card">
-            <div class="photo-comparison">
-              <div class="photo-box"><img
-                  src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=500&q=80"
-                  alt="Antes"><span class="photo-tag">Antes</span></div>
-              <div class="photo-box"><img
-                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=80"
-                  alt="Depois"><span class="photo-tag accent">16 Semanas</span></div>
-            </div>
-            <div class="result-user-info">
-              <div>
-                <h4>Rafael Mendes</h4><span>Engenheiro de Software</span>
-              </div>
-            </div>
-            <div class="result-metrics-row">
-              <div class="m-badge"><b>+5.8 kg</b><span>Massa Magra</span></div>
-              <div class="m-badge"><b>-6.2 %</b><span>Gordura</span></div>
-            </div>
-            <p class="quote-text">"O ajuste na trajetória dos braços no supino eliminou a dor no ombro que eu sentia há
-              anos. As cargas subiram rápido depois disso."</p>
-          </div>
-
-          <div class="result-card reveal-card">
-            <div class="photo-comparison">
-              <div class="photo-box"><img
-                  src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=500&q=80"
-                  alt="Antes"><span class="photo-tag">Antes</span></div>
-              <div class="photo-box"><img
-                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=500&q=80"
-                  alt="Depois"><span class="photo-tag accent">12 Semanas</span></div>
-            </div>
-            <div class="result-user-info">
-              <div>
-                <h4>Gabriel Barbosa</h4><span>Empresário</span>
-              </div>
-            </div>
-            <div class="result-metrics-row">
-              <div class="m-badge"><b>+40 kg</b><span>Leg Press</span></div>
-              <div class="m-badge"><b>RIR 1-2</b><span>Precisão</span></div>
-            </div>
-            <p class="quote-text">"Achava que treinar até a falha em todo exercício era a chave. Quando organizamos o
-              volume semanal, o resultado apareceu de verdade."</p>
-          </div>
-
-          <div class="result-card reveal-card">
-            <div class="photo-comparison">
-              <div class="photo-box"><img
-                  src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=500&q=80"
-                  alt="Antes"><span class="photo-tag">Antes</span></div>
-              <div class="photo-box"><img
-                  src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=500&q=80"
-                  alt="Depois"><span class="photo-tag accent">24 Semanas</span></div>
-            </div>
-            <div class="result-user-info">
-              <div>
-                <h4>Lucas Costa</h4><span>Médico</span>
-              </div>
-            </div>
-            <div class="result-metrics-row">
-              <div class="m-badge"><b>-11.5 kg</b><span>Gordura</span></div>
-              <div class="m-badge"><b>100%</b><span>Aderência</span></div>
-            </div>
-            <p class="quote-text">"Com o plantão da medicina, precisava de um treino eficiente e rápido. O controle de
-              volume por WhatsApp salvou minha rotina."</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="metodo">
-      <div class="wrap">
-        <div class="section-head"><span class="badge"><span class="badge-dot"></span> Estrutura do Método</span>
+          <span class="badge"><span class="badge-dot"></span> Metodologia Direta</span>
           <h2>Como Funciona a Consultoria</h2>
+          <p>Sem enrolação ou promessas milagrosas: uma metodologia técnica focada na sua rotina e na sua evolução real.</p>
         </div>
-        <div class="bento-grid">
-          <div class="bento-card reveal-card">
-            <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2">
-                <path d="M15 10l5 5-5 5" />
-                <path d="M4 4v7a4 4 0 0 0 4 4h12" />
-              </svg></div>
-            <h3>Análise de Vídeos</h3>
-            <p style="margin-top: 10px; font-size: 0.95rem;">Avaliação minuciosa da mecânica do movimento, velocidade da
-              barra e alinhamento articular para máxima eficiência muscular.</p>
+
+        <div class="pillars-grid">
+          <div class="pillar-card reveal-card">
+            <div class="pillar-card-top">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12h5l3 7 4-14 3 7h5" />
+                </svg>
+              </div>
+              <span class="pillar-num">01</span>
+            </div>
+            <div class="pillar-content">
+              <h3>Treinos com base científica</h3>
+              <p>Prescrição estruturada em princípios sólidos de fisiologia do exercício e biomecânica do movimento, garantindo máxima eficiência sem desgaste desnecessário.</p>
+            </div>
           </div>
-          <div class="bento-card reveal-card">
-            <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" />
-                <line x1="8" y1="21" x2="16" y2="21" />
-                <line x1="12" y1="17" x2="12" y2="21" />
-              </svg></div>
-            <h3>Gestão de Volume (RPE/RIR)</h3>
-            <p style="margin-top: 10px; font-size: 0.95rem;">Cálculo preciso de séries semanais efetivas para prevenir
-              overtraining e manter a sobrecarga progressiva.</p>
+
+          <div class="pillar-card reveal-card">
+            <div class="pillar-card-top">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <span class="pillar-num">02</span>
+            </div>
+            <div class="pillar-content">
+              <h3>Adaptado à sua rotina e limitações</h3>
+              <p>O planejamento respeita rigorosamente a sua disponibilidade de dias, equipamentos da sua academia e qualquer histórico de dores ou limitações prévias.</p>
+            </div>
           </div>
-          <div class="bento-card reveal-card">
-            <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg></div>
-            <h3>Suporte via WhatsApp</h3>
-            <p style="margin-top: 10px; font-size: 0.95rem;">Contato direto para tirar dúvidas, realizar substituição
-              imediata de aparelhos e ajustar cargas ao longo da semana.</p>
+
+          <div class="pillar-card reveal-card">
+            <div class="pillar-card-top">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <span class="pillar-num">03</span>
+            </div>
+            <div class="pillar-content">
+              <h3>Suporte direto via WhatsApp</h3>
+              <p>Canal direto comigo para sanar dúvidas diárias, solicitar substituições de aparelhos na hora do treino e manter você sempre seguro.</p>
+            </div>
           </div>
+
+          <div class="pillar-card reveal-card">
+            <div class="pillar-card-top">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20v-6M6 20V10M18 20V4" />
+                </svg>
+              </div>
+              <span class="pillar-num">04</span>
+            </div>
+            <div class="pillar-content">
+              <h3>Ajustes periódicos no planejamento</h3>
+              <p>Progressão contínua e estratégica de estímulos para não deixar seus resultados estagnarem, adaptando séries, repetições e cargas conforme você evolui.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card reveal-card">
+            <div class="pillar-card-top">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </div>
+              <span class="pillar-num">05</span>
+            </div>
+            <div class="pillar-content">
+              <h3>Relatórios quinzenais de evolução</h3>
+              <p>A cada 15 dias realizamos uma avaliação prática para checar métricas, mapear dificuldades de execução e refinar os pontos que mais precisam de atenção.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-guarantee reveal-card">
+          <div class="guarantee-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <polyline points="9 12 11 14 15 10" />
+            </svg>
+          </div>
+          <p>Isso garante um planejamento seguro, eficiente e feito sob medida para você evoluir com consistência.</p>
         </div>
       </div>
     </section>
 
-    <section id="planos">
+    <!-- SEÇÃO ADESÃO -->
+    <section id="adesao">
       <div class="wrap">
-        <div class="section-head"><span class="badge"><span class="badge-dot"></span> Investimento</span>
-          <h2>Planos de Acompanhamento</h2>
+        <div class="section-head">
+          <span class="badge"><span class="badge-dot"></span> Passo a Passo</span>
+          <h2>Como Funciona a Adesão</h2>
+          <p>O processo para iniciar seu acompanhamento é simples, transparente e sem burocracia.</p>
         </div>
-        <div class="plans-grid">
-          <div class="plan-card reveal-card">
-            <h3>Mensal</h3>
-            <p style="font-size: 0.88rem; color: var(--txt-muted); margin-top: 4px;">Para ajustes pontuais de rotina.
-            </p>
-            <div class="price-val">R$ 150 <small>/mês</small></div>
-            <ul class="plan-features">
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Anamnese técnica completa</li>
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Treino 100% individualizado</li>
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Análise de vídeos de execução</li>
-            </ul>
-            <a class="btn outline"
-              href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20Tenho%20interesse%20no%20Plano%20Mensal%20da%20consultoria.%20Como%20fa%C3%A7o%20para%20come%C3%A7ar%3F"
-              target="_blank">Selecionar Mensal</a>
+
+        <div class="steps-grid">
+          <div class="step-card reveal-card">
+            <span class="step-num">01</span>
+            <h3>Contato & Confirmação</h3>
+            <p>Você confirma seu plano diretamente pelo WhatsApp e garante sua vaga no acompanhamento.</p>
           </div>
-          <div class="plan-card featured reveal-card">
-            <span class="plan-badge">Recomendado</span>
-            <h3>Trimestral</h3>
-            <p style="font-size: 0.88rem; color: var(--txt-muted); margin-top: 4px;">Ciclo ideal para consolidação de
-              resultados.</p>
-            <div class="price-val">R$ 380 <small>/ 3 meses</small></div>
-            <ul class="plan-features">
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Anamnese técnica completa</li>
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Periodização em blocos</li>
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Análise de vídeos ilimitada</li>
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Reavaliações técnicas de carga</li>
-            </ul>
-            <a class="btn"
-              href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20Quero%20garantir%20minha%20vaga%20no%20Plano%20Trimestral.%20Como%20funciona%20a%20ades%C3%A3o%3F"
-              target="_blank">Garantir Plano Trimestral</a>
+
+          <div class="step-card reveal-card">
+            <span class="step-num">02</span>
+            <h3>Formulário de Anamnese</h3>
+            <p>Você responde a um questionário técnico detalhado sobre sua rotina, histórico de treino, dores e objetivos.</p>
           </div>
-          <div class="plan-card reveal-card">
-            <h3>Semestral</h3>
-            <p style="font-size: 0.88rem; color: var(--txt-muted); margin-top: 4px;">Transformação estética e de força
-              duradoura.</p>
-            <div class="price-val">R$ 690 <small>/ 6 meses</small></div>
-            <ul class="plan-features">
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Todos os benefícios do Trimestral</li>
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Prioridade na análise de vídeos</li>
-              <li><svg viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg> Planejamento estendido de volume</li>
-            </ul>
-            <a class="btn outline"
-              href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20Quero%20entrar%20no%20Plano%20Semestral%20para%20focar%20na%20minha%20evolu%C3%A7%C3%A3o.%20Quais%20os%20pr%C3%B3ximos%20passos%3F"
-              target="_blank">Selecionar Semestral</a>
+
+          <div class="step-card reveal-card">
+            <span class="step-num">03</span>
+            <h3>Envio de Fotos para Avaliação</h3>
+            <p>Envio de fotos corporais simples para avaliação postural, alinhamento físico e identificação de assimetrias.</p>
+          </div>
+
+          <div class="step-card reveal-card">
+            <span class="step-num">04</span>
+            <h3>Entrega do Treino & Início</h3>
+            <p>Seu planejamento individualizado é entregue em até 48h úteis e você inicia com suporte contínuo ativo.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SEÇÃO CONTATO / CTA DIRETO -->
+    <section id="contato">
+      <div class="wrap">
+        <div class="cta-card reveal-card">
+          <span class="badge"><span class="badge-dot"></span> Vagas Limitadas</span>
+          <h2>Pronto para treinar com prescrição técnica e base científica?</h2>
+          <p>O atendimento é 100% individualizado. Clique abaixo para falar direto comigo no WhatsApp, verificar a disponibilidade de vagas e iniciar sua avaliação.</p>
+          <div class="cta-action-wrap">
+            <a class="btn-whatsapp-lg"
+              href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20Quero%20iniciar%20minha%20consultoria%20e%20verificar%20a%20disponibilidade%20de%20vagas."
+              target="_blank">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+              </svg>
+              Falar com Leonardo no WhatsApp
+            </a>
+          </div>
+          <div class="cta-features">
+            <div class="cta-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Avaliação Técnica & Anamnese</span>
+            </div>
+            <div class="cta-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Acompanhamento Direto</span>
+            </div>
+            <div class="cta-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Relatórios Quinzenais</span>
+            </div>
+            <div class="cta-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Entrega em até 48h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO FAQ RÁPIDO -->
     <section id="faq">
       <div class="wrap">
-        <div class="section-head"><span class="badge"><span class="badge-dot"></span> Tira Dúvidas</span>
-          <h2>Perguntas Frequentes</h2>
+        <div class="section-head">
+          <span class="badge"><span class="badge-dot"></span> Tira-Dúvidas</span>
+          <h2>FAQ Rápido</h2>
+          <p>Respostas objetivas sobre o funcionamento da consultoria.</p>
         </div>
         <div class="faq-container">
           <div class="faq-item">
-            <button class="faq-btn" aria-expanded="false">Como funciona o envio de vídeos para correção?
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button class="faq-btn" id="faq-btn-1" aria-expanded="false" aria-controls="faq-ans-1">Como funciona para começar a consultoria?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <line x1="12" y1="5" x2="12" y2="19" />
                 <line x1="5" y1="12" x2="19" y2="12" />
               </svg>
             </button>
-            <div class="faq-body">
-              <p>Você grava as séries principais durante o seu treino e me envia via WhatsApp. Faço a avaliação técnica
-                do movimento e envio o feedback com as correções necessárias.</p>
+            <div class="faq-body" id="faq-ans-1" role="region" aria-labelledby="faq-btn-1">
+              <div class="faq-body-inner">
+                <p>Assim que você confirma sua adesão pelo WhatsApp, você recebe o formulário de anamnese técnica e as orientações para envio das fotos de avaliação postural. A partir dessas respostas e análise, seu treino sob medida é estruturado.</p>
+              </div>
             </div>
           </div>
           <div class="faq-item">
-            <button class="faq-btn" aria-expanded="false">Em quanto tempo meu treino fica pronto?
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button class="faq-btn" id="faq-btn-2" aria-expanded="false" aria-controls="faq-ans-2">Como saber o valor e as formas de pagamento?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <line x1="12" y1="5" x2="12" y2="19" />
                 <line x1="5" y1="12" x2="19" y2="12" />
               </svg>
             </button>
-            <div class="faq-body">
-              <p>Após responder o formulário de anamnese técnica, o seu protocolo individualizado é entregue em até 48
-                horas úteis.</p>
+            <div class="faq-body" id="faq-ans-2" role="region" aria-labelledby="faq-btn-2">
+              <div class="faq-body-inner">
+                <p>Os valores e as opções de pagamento (Pix à vista ou cartão parcelado) são informados diretamente no WhatsApp durante o atendimento inicial, garantindo alinhamento antes de qualquer confirmação.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-btn" id="faq-btn-3" aria-expanded="false" aria-controls="faq-ans-3">Como funciona o acompanhamento no WhatsApp?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <div class="faq-body" id="faq-ans-3" role="region" aria-labelledby="faq-btn-3">
+              <div class="faq-body-inner">
+                <p>Você tem canal direto comigo pelo WhatsApp para tirar dúvidas sobre a execução dos exercícios, solicitar substituições de aparelhos caso a academia esteja cheia ou falte algum equipamento, e alinhar cargas ao longo das semanas.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-btn" id="faq-btn-4" aria-expanded="false" aria-controls="faq-ans-4">Como funcionam os relatórios quinzenais?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <div class="faq-body" id="faq-ans-4" role="region" aria-labelledby="faq-btn-4">
+              <div class="faq-body-inner">
+                <p>A cada 15 dias avaliamos sua evolução e dificuldades relatadas para recalibrar o protocolo. Isso garante ajustes periódicos no momento exato em que seu corpo precisa de novos estímulos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-btn" id="faq-btn-5" aria-expanded="false" aria-controls="faq-ans-5">Em quanto tempo o treino fica pronto após a adesão?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <div class="faq-body" id="faq-ans-5" role="region" aria-labelledby="faq-btn-5">
+              <div class="faq-body-inner">
+                <p>Após o envio do formulário de anamnese preenchido e das fotos para avaliação, seu protocolo 100% individualizado é entregue em até 48 horas úteis pronto para você treinar.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
       <div class="wrap">
-        <h2>Eleve o nível da sua preparação.</h2>
-        <p style="margin: 12px 0 28px; color: var(--txt-muted);">Inicie seu acompanhamento focado em biomecânica e dados
-          reais.</p>
+        <h2>Pronto para treinar com método e segurança?</h2>
+        <p style="margin: 12px 0 28px; color: var(--txt-muted);">Inicie seu acompanhamento sob medida para você evoluir com consistência.</p>
         <a class="btn"
-          href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20consultoria%20online."
-          target="_blank">Conversar no WhatsApp</a>
-        <p style="font-size: 0.82rem; color: var(--txt-muted); margin-top: 48px;">© 2026 Leonardo Crecchi. Consultoria
-          Esportiva.</p>
+          href="https://wa.me/5547991731440?text=Ol%C3%A1%2C%20Leonardo%21%20Quero%20iniciar%20minha%20consultoria%20e%20verificar%20a%20disponibilidade%20de%20vagas."
+          target="_blank">Falar com Leonardo no WhatsApp</a>
+        <p style="font-size: 0.82rem; color: var(--txt-muted); margin-top: 48px;">© 2026 Leonardo Crecchi. Consultoria Esportiva.</p>
       </div>
     </footer>
   </main>
@@ -1155,12 +1264,12 @@
     function updateDumbbellLayout() {
       const isMobile = window.innerWidth <= 768;
       if (isMobile) {
-        dumbbellGroup.position.set(0, -0.75, 0);
+        dumbbellGroup.position.set(0, 0.05, 0);
         const scaleVal = isGLTFModelLoaded ? 0.35 : 0.30;
         dumbbellGroup.scale.set(scaleVal, scaleVal, scaleVal);
       } else {
-        dumbbellGroup.position.set(0, 0, 0);
-        const scaleVal = isGLTFModelLoaded ? 0.8 : 0.65;
+        dumbbellGroup.position.set(0, 0.45, 0);
+        const scaleVal = isGLTFModelLoaded ? 0.78 : 0.65;
         dumbbellGroup.scale.set(scaleVal, scaleVal, scaleVal);
       }
       if (typeof ScrollTrigger !== 'undefined') {
@@ -1228,16 +1337,74 @@
       dumbbellGroup.add(model);
       isGLTFModelLoaded = true;
       updateDumbbellLayout();
+      renderScene();
     }, undefined, (error) => {
       createProceduralFallbackDumbbell();
+      renderScene();
     });
 
-    function animate() {
-      requestAnimationFrame(animate);
-      floatGroup.position.y = Math.sin(Date.now() * 0.0015) * 0.08;
+    let animationFrameId = null;
+    let isIntroVisible = true;
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let prefersReducedMotion = motionQuery.matches;
+
+    motionQuery.addEventListener('change', (e) => {
+      prefersReducedMotion = e.matches;
+      if (prefersReducedMotion) {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+        floatGroup.position.y = 0;
+        renderScene();
+      } else if (isIntroVisible && !animationFrameId) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    });
+
+    function renderScene() {
       renderer.render(scene, camera);
     }
-    animate();
+
+    function animate() {
+      if (!isIntroVisible) return;
+      if (!prefersReducedMotion) {
+        floatGroup.position.y = Math.sin(Date.now() * 0.0015) * 0.08;
+      }
+      renderScene();
+      if (!prefersReducedMotion && isIntroVisible) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    }
+
+    const introObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isIntroVisible = entry.isIntersecting;
+        if (isIntroVisible) {
+          if (!animationFrameId && !prefersReducedMotion) {
+            animationFrameId = requestAnimationFrame(animate);
+          } else {
+            renderScene();
+          }
+        } else {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+        }
+      });
+    }, { threshold: 0 });
+
+    const introContainerEl = document.getElementById('intro-container');
+    if (introContainerEl) {
+      introObserver.observe(introContainerEl);
+    }
+
+    if (!prefersReducedMotion) {
+      animationFrameId = requestAnimationFrame(animate);
+    } else {
+      renderScene();
+    }
 
     const isMobileDevice = window.innerWidth <= 768;
 
@@ -1269,6 +1436,7 @@
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
       updateDumbbellLayout();
+      renderScene();
     });
 
     document.querySelectorAll('.faq-btn').forEach(button => {
@@ -1276,12 +1444,9 @@
         const expanded = button.getAttribute('aria-expanded') === 'true';
         document.querySelectorAll('.faq-btn').forEach(btn => {
           btn.setAttribute('aria-expanded', 'false');
-          btn.nextElementSibling.style.maxHeight = null;
         });
         if (!expanded) {
           button.setAttribute('aria-expanded', 'true');
-          const body = button.nextElementSibling;
-          body.style.maxHeight = body.scrollHeight + "px";
         }
       });
     });
